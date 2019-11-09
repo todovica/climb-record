@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/climb-record/static/css/main.b100e6da.chunk.css",
+    "main.js": "/climb-record/static/js/main.a4c8fd86.chunk.js",
+    "main.js.map": "/climb-record/static/js/main.a4c8fd86.chunk.js.map",
+    "runtime-main.js": "/climb-record/static/js/runtime-main.98279a18.js",
+    "runtime-main.js.map": "/climb-record/static/js/runtime-main.98279a18.js.map",
+    "static/js/2.027993aa.chunk.js": "/climb-record/static/js/2.027993aa.chunk.js",
+    "static/js/2.027993aa.chunk.js.map": "/climb-record/static/js/2.027993aa.chunk.js.map",
+    "index.html": "/climb-record/index.html",
+    "precache-manifest.3f5d4846052406acdbca11eb67e01d66.js": "/climb-record/precache-manifest.3f5d4846052406acdbca11eb67e01d66.js",
+    "service-worker.js": "/climb-record/service-worker.js",
+    "static/css/main.b100e6da.chunk.css.map": "/climb-record/static/css/main.b100e6da.chunk.css.map",
+    "static/media/logo.svg": "/climb-record/static/media/logo.25bf045c.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.98279a18.js",
+    "static/js/2.027993aa.chunk.js",
+    "static/css/main.b100e6da.chunk.css",
+    "static/js/main.a4c8fd86.chunk.js"
+  ]
+}
