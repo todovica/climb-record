@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './index.scss';
 import PrivateRoute from './components/PrivateRoute';
 import HomePage from './components/HomePage';
@@ -11,9 +11,10 @@ function App() {
                 
     <Router>
         <div>
-            <PrivateRoute exact path="/" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignUpPage} />
+            <PrivateRoute exact path="/climb-record/home" component={HomePage} />
+            <Route path="/climb-record/login" component={LoginPage} />
+            <Route path="/climb-record/signup" component={SignUpPage} />
+            {/*<Redirect from='/climb-record*' to='/climb-record/home'/>*/}
         </div>
     </Router>
 

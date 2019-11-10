@@ -20,6 +20,7 @@ function login(username, password) {
     return fetch(`https://test-server-express-2.herokuapp.com/users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
+            console.log(user)
             // login successful if there's a user in the response
             if (user) {
                 // store user details and basic auth credentials in local storage 
@@ -29,7 +30,8 @@ function login(username, password) {
             }
 
             return user;
-        });
+        })
+        .catch((error) => console.log('eeeee'));
 }
 
 function signup(username, password, firstName, lastName) {
@@ -106,7 +108,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                //location.reload(true);
+                window.location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
