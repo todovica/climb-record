@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "67bf1953961538fccb14619b2aafa968",
+    "revision": "1d72c49a841b8b93258f795710383707",
     "url": "/climb-record/index.html"
   },
   {
-    "revision": "5f22292a9d089fd8a6f7",
+    "revision": "bc9192bda8b1e5a5288d",
     "url": "/climb-record/static/css/main.4b447aaf.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/climb-record/static/js/2.5525e9ea.chunk.js"
   },
   {
-    "revision": "5f22292a9d089fd8a6f7",
-    "url": "/climb-record/static/js/main.d67ebce4.chunk.js"
+    "revision": "bc9192bda8b1e5a5288d",
+    "url": "/climb-record/static/js/main.7603f920.chunk.js"
   },
   {
     "revision": "4633fb596859496823b5",
