@@ -1,85 +1,181 @@
 import React from 'react';
 import LoginQuoteComponent from './LoginQuoteComponent';
-import InputFieldComponent from './InputFieldComponent';
+import Copyright from './Copyright';
 
 import { userService } from '../services';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-class SignUpPage extends React.Component {
-    constructor(props) {
-        super(props);
 
-        userService.logout();
+const useStyles = makeStyles(theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-        this.state = {
-            username: '',
-            password: '',
-            firstname: '',
-            lastname: '',
-            submitted: false,
-            loading: false,
-            error: ''
-        };
+export default function SignUpPage(props) {
+  const classes = useStyles();
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSignUp = this.handleSignUp.bind(this);
-    }
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-    }
+  userService.logout();
 
-    handleSignUp(e) {
-        e.preventDefault();
+  function handleChange(event) {
+    if(event.target.id==='firstName') {
+        setFirstName(event.target.value);
+      } else if(event.target.id==='lastName') {
+        setLastName(event.target.value);
+      } if(event.target.id==='username') {
+        setUsername(event.target.value);
+      } else if(event.target.id==='password') {
+        setPassword(event.target.value);
+      } else {
+          console.error('unknown target id');
+      }
+  }  
+  
+  function handleSignUp(e) {
+    e.preventDefault();
 
-        this.setState({ submitted: true });
-        const { username, password, firstname, lastname, returnUrl } = this.state;
+    userService.signup(username, password, firstName, lastName)
+        .then(
+            user => {
+                alert("user created! try to login!" + user);
+                const { from } = props.location.state || { from: { pathname: "/" } };
+                props.history.push(from);
+            }
+        ).catch((error) => console.log("ERROR: " + error));
+  }
 
-        // stop here if form is invalid
-        if (!(username && password && firstname && lastname)) {
-            return;
-        }
-
-        this.setState({ loading: true });
-        userService.signup(username, password, firstname, lastname)
-            .then(
-                user => {
-                    alert("user created! try to login!" + user);
-                    const { from } = this.props.location.state || { from: { pathname: "/" } };
-                    this.props.history.push(from);
-                },
-                error => this.setState({ error, loading: false })
-            );
-    }
-
-    render() {
-        const { username, password, firstname, lastname, submitted, loading, error } = this.state;
-        return (
-            <React.Fragment>
-            <LoginQuoteComponent />
-            <div className="row justify-content-center">
-                <div className="col-4 col-offset-4 col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-4 loginform">
-                    <h2>Sign Up</h2>
-                    <form name="form">
-                        <InputFieldComponent label={'Username'} htmlLabel={'username'} filedInput={username} submitted={submitted} handleChange={this.handleChange} />
-                        <InputFieldComponent label={'Password'} htmlLabel={'password'} filedInput={password} submitted={submitted} handleChange={this.handleChange} />
-                        <InputFieldComponent label={'First Name'} htmlLabel={'firstname'} filedInput={firstname} submitted={submitted} handleChange={this.handleChange} />
-                        <InputFieldComponent label={'Last name'} htmlLabel={'lastname'} filedInput={lastname} submitted={submitted} handleChange={this.handleChange} />
-                    <div className="form-group">
-                        <button className="btn btn-primary" disabled={loading} onClick={this.handleSignUp}>Sign Up</button>
-                        {loading &&
-                            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        }
-                    </div>
-                    {error &&
-                        <div className={'alert alert-danger'}>{error}</div>
-                    }
-                </form>
-                </div>
-            </div>
-            </React.Fragment>
-        );
-    }
+  return (<>
+    <LoginQuoteComponent />
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+                value={firstName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+                value={lastName}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                value={username}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleSignUp}
+          >
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link href="/climb-record/login" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  </>);
 }
-
-export default SignUpPage; 

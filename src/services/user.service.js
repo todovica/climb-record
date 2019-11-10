@@ -20,7 +20,6 @@ function login(username, password) {
     return fetch(`https://test-server-express-2.herokuapp.com/users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            console.log(user)
             // login successful if there's a user in the response
             if (user) {
                 // store user details and basic auth credentials in local storage 
@@ -31,7 +30,7 @@ function login(username, password) {
 
             return user;
         })
-        .catch((error) => console.log('eeeee'));
+        .catch((error) => console.log('ERROR: ' + error));
 }
 
 function signup(username, password, firstName, lastName) {
