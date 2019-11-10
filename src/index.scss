@@ -1,0 +1,171 @@
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: darkgreen;
+ }
+ a:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color:#019601;
+ }
+.help-block { font-size: 12px; }
+
+.menu ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+.menu li {
+padding: 8px;
+margin-bottom: 7px;
+border: 1px solid rgb(90, 234, 0);
+box-shadow: 0 1px 0 0  rgb(90, 234, 0);
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu li:hover {
+border: 1px solid rgb(90, 234, 0);
+box-shadow: 0 1px 0 0  rgb(90, 234, 0);
+box-shadow: 0 1px 3px rgba(90, 234, 0,0.12), 0 1px 2px rgba(174, 234, 0,0.50);
+}
+
+.navbarmain {
+background: #AEEA00;
+color: darkgreen;
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.searchbutton {
+padding-top: 15px;
+}
+.searchbutton input[type="text"] {
+
+border: 0px;
+border-radius: .25em;
+transition: border-color .15s;
+border-bottom: 1px solid rgb(90, 234, 0);
+box-shadow: 0 1px 0 0  rgba(90, 234, 0, 0.24);
+border-radius: 0;
+}
+
+.searchbutton input[type="text"]:focus:not([readonly]) {
+border-bottom: 1px solid darkgreen;
+box-shadow: 0 1px 0 0  rgba(90, 234, 0, 0.24);
+border: 0px;
+border-radius: 0;
+} 
+
+.jumbotron {
+    background-color: #AEEA00;
+    color: darkgreen;
+}
+
+.navbaricon {
+    margin: 5px;
+    height: 2em;
+    width: 2em;
+}
+
+.home {
+    padding: 15px;
+    color: darkgreen;
+}
+
+.welcomeicon {
+    margin-bottom: 15px;
+    height: 4.5em;
+    width: 4.5em;
+}
+
+.welcomeiconmedium {
+    margin-bottom: 15px;
+    height: 2.5em;
+    width: 2.5em;
+}
+
+.loginform {
+    color: darkgreen;
+}
+
+.cardPadding {
+    padding: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #025302;
+    border-color: #025302;
+}
+
+.btn-primary {
+    background-color: darkgreen;
+    border-color: darkgreen;
+}
+
+.expandedarea {
+    margin-bottom: 32px;
+    margin-right: 1px;
+}
+
+.expandedtext {
+    padding: 15px;
+    border-radius: .25em;
+    max-width: 20em;
+}
+
+.noborder {
+    border: 0px;
+}
+
+#addRouteOverlay {
+    display: none; /* Hidden by default */
+}
+
+#userProfileOverlay {
+    display: none; /* Hidden by default */
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: block; 
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+.overlayclass {
+    background-color: white;
+    padding: 15px;
+    height: fit-content;
+    border: 2px solid darkgreen;
+    border-radius: .25em;
+}
+
+.profilecontent {
+    width: 500px;
+    height: 400px;
+    margin: 30px;
+    overflow-y: scroll;
+}
+
+.profileheader {
+    width: 500px;
+    margin: 30px;
+}
+
+.gradepicker {
+    width: 150px;
+    margin-left: 15px;
+}
+
+.formmargin {
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
