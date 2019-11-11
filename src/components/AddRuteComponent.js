@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import OverlayComponent from './OverlayComponent';
 import InputFieldComponent from './InputFieldComponent';
 

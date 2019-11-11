@@ -47,7 +47,7 @@ class RoutesCardComponent extends React.Component {
 
     submitDeletionOfRoute(username, ruteName, comment, location, grade) {
         this.setState({loading: true});
-        console.log('delete'  + ' ' + username + ' ' + ruteName + ' ' +  comment + ' ' +  location + ' ' +  grade);
+        //console.log('delete'  + ' ' + username + ' ' + ruteName + ' ' +  comment + ' ' +  location + ' ' +  grade);
         userService.deleteRuteForUser(username, ruteName, comment, location, grade)
             .then(rutes => this.setState({ rutes }))
             .then(() => this.setState({loading: false}));
@@ -84,6 +84,9 @@ class RoutesCardComponent extends React.Component {
                                         </div>
                                     </div>
                                     </div></div>}
+                                    else {
+                                        return null;
+                                    }
                                  
                     })}
                     <p style={{marginTop: '15px'}}>

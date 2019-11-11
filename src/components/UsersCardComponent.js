@@ -1,6 +1,4 @@
 import React from 'react';
-
-import { userService } from '../services';
 import ProfileView from './ProfileView';
 
 class UsersCardComponent extends React.Component {

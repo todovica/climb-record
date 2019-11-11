@@ -62,7 +62,7 @@ export default function ProfileView(props) {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Sound
+              {user.firstName + ' ' + user.lastName}
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               ...
@@ -104,6 +104,8 @@ export default function ProfileView(props) {
                         </div>
                     </div>
                     </div>
+                } else {
+                    return null;
                 }})}
         </List>
         </Container>

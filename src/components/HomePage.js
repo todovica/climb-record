@@ -38,7 +38,7 @@ class HomePage extends React.Component {
     }
 
     render() {
-        const { user, users, rutes, ruteName, comment, submitted, location, grade } = this.state;
+        const { user, users, ruteName, comment, submitted, location, grade } = this.state;
         return (
             <React.Fragment>
                 <NavBarComponent />

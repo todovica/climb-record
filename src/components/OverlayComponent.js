@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 
 class OverlayComponent extends React.Component {
 
