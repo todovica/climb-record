@@ -4,7 +4,7 @@ import React from 'react';
 import AddRuteComponent from './AddRuteComponent';
 
 import { FaTrashAlt } from "react-icons/fa";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaMapMarker, FaComment } from "react-icons/fa";
 
 import { userService } from '../services';
 
@@ -74,8 +74,8 @@ class RoutesCardComponent extends React.Component {
                                     <div className="collapse" id={rutes.ruteName.replace(/\s+/g,'')}>
                                     <div className="row expandedarea justify-content-between">
                                         <div className="expandedtext">
-                                            <div>{rutes.location}</div>
-                                            <div>{rutes.comment}</div>
+                                            <div><FaMapMarker />{' ' + rutes.location}</div>
+                                            <div><FaComment />{' ' + rutes.comment}</div>
                                         </div>
                                         <div>
                                             <a id="myLink" title="Click to delete route" href="#" onClick={() => console.log("editing to be implemented")}><FaEdit /></a>
