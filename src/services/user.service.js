@@ -7,7 +7,8 @@ export const userService = {
     getAll,
     getRutesForUser,
     addRuteForUser,
-    deleteRuteForUser
+    deleteRuteForUser,
+    uploadPhotoForUser
 };
 
 function login(username, password) {
@@ -98,6 +99,27 @@ function deleteRuteForUser( username, ruteName, comment, location, grade ) {
     };
     
     return fetch(`https://test-server-express-2.herokuapp.com/users/delRute`, requestOptions).then(handleResponse);
+}
+
+
+function uploadPhotoForUser( username, image ) {
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, image })
+    };
+    
+    return fetch(`https://test-server-express-2.herokuapp.com/users/addPhoto`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            if (user) {
+                alert(user.image)
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+            return user;
+        })
+        .catch(err => console.log("ERROR upload photo: " + err));
 }
 
 function handleResponse(response) {
