@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/climb-record/static/css/main.4b447aaf.chunk.css",
-    "main.js": "/climb-record/static/js/main.a7fcb6bf.chunk.js",
-    "main.js.map": "/climb-record/static/js/main.a7fcb6bf.chunk.js.map",
+    "main.js": "/climb-record/static/js/main.7bee8c76.chunk.js",
+    "main.js.map": "/climb-record/static/js/main.7bee8c76.chunk.js.map",
     "runtime-main.js": "/climb-record/static/js/runtime-main.5834f333.js",
     "runtime-main.js.map": "/climb-record/static/js/runtime-main.5834f333.js.map",
-    "static/js/2.04548c7b.chunk.js": "/climb-record/static/js/2.04548c7b.chunk.js",
-    "static/js/2.04548c7b.chunk.js.map": "/climb-record/static/js/2.04548c7b.chunk.js.map",
+    "static/js/2.f60d9c93.chunk.js": "/climb-record/static/js/2.f60d9c93.chunk.js",
+    "static/js/2.f60d9c93.chunk.js.map": "/climb-record/static/js/2.f60d9c93.chunk.js.map",
     "index.html": "/climb-record/index.html",
-    "precache-manifest.205cd09270fc4c2d481e00521d3a57d6.js": "/climb-record/precache-manifest.205cd09270fc4c2d481e00521d3a57d6.js",
+    "precache-manifest.a47fb61b1e736524008f174c5f8197ba.js": "/climb-record/precache-manifest.a47fb61b1e736524008f174c5f8197ba.js",
     "service-worker.js": "/climb-record/service-worker.js",
     "static/css/main.4b447aaf.chunk.css.map": "/climb-record/static/css/main.4b447aaf.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.5834f333.js",
-    "static/js/2.04548c7b.chunk.js",
+    "static/js/2.f60d9c93.chunk.js",
     "static/css/main.4b447aaf.chunk.css",
-    "static/js/main.a7fcb6bf.chunk.js"
+    "static/js/main.7bee8c76.chunk.js"
   ]
 }
