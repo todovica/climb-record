@@ -12,6 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Container from '@material-ui/core/Container';
 import { FaUserCircle } from "react-icons/fa";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import RoomIcon from '@material-ui/icons/Room';
 import InsertCommentIcon from '@material-ui/icons/InsertComment';
 import { userService } from '../services';
@@ -45,13 +46,16 @@ export default function ProfileView(props) {
     setOpen(false);
   };
 
+ 
+
   const { user } = props;
 
+  console.log(user.image)
   return (
     <div>
       <Button fullWidth variant="outlined" color="primary" onClick={handleClickOpen} >
-        <Grid container direction="row" justify="space-between" alignItems="baseline" >
-          <FaUserCircle />
+        <Grid container direction="row" justify="space-between" alignItems="center" >
+          {(user.image) ? <img style={{ width: "2.4em"}} src={user.image} alt="Profie Photo" /> : <AccountCircleIcon fontSize="large" />}
           {user.firstName + ' ' + user.lastName}
         </Grid>
       </Button>
@@ -73,7 +77,7 @@ export default function ProfileView(props) {
         <div className="container profileheader d-flex justify-content-between">
             <div>
                 <div>
-                    <FaUserCircle className="welcomeicon" />
+                {(user.image) ? <img src={user.image} alt="Profie Photo" /> : <AccountCircleIcon style={{ width: "150px", height: "150px" }} />}
                 </div>
                 <div>
                     {props.user.firstName + ' ' + props.user.lastName}
