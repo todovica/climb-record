@@ -1,4 +1,9 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { updateUser } from "../actions/index";
+import { userService } from '../services';
+import Avatar from 'react-avatar-edit'
+
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,9 +14,24 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import Avatar from 'react-avatar-edit'
-import { userService } from '../services';
+
+
+
+function mapStateToProps(state) {
+  console.log(state)
+  return {
+    user: {
+      username: state.user.username,
+      firstName: state.user.firstName,
+      lastName: state.user.lastName,
+      image: state.user.image,
+    }
+  };
+}
+
 
 const styles = theme => ({
   root: {
@@ -53,12 +73,19 @@ const DialogActions = withStyles(theme => ({
   },
 }))(MuiDialogActions);
 
-export default function UploadAvatar(props) {
+function UploadAvatar(props) {
 
   const { user } = props;
   const [open, setOpen] = React.useState(false);
   const [preview, setPreview] = React.useState(null);
   const [src, setSrc] = React.useState(null);
+
+  if(!props.user.username){
+    props.updateUser(JSON.parse(localStorage.getItem('user')));
+    return <Grid container direction="row" justify="center" alignItems="center">
+             <CircularProgress color="secondary" />
+           </Grid>;
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -78,12 +105,15 @@ export default function UploadAvatar(props) {
 
   function handleCapture() {
 
-    let username= user.username;
+    let username= props.user.username;
     let image = preview;
 
     
     userService.uploadPhotoForUser(username, image)
-            .then(() => setOpen(false))
+            .then(() => {
+              props.updateUser(JSON.parse(localStorage.getItem('user')));
+              setOpen(false);
+            })
             .catch((error) => {setOpen(false); alert(error);});
 
   };
@@ -116,3 +146,5 @@ export default function UploadAvatar(props) {
     </div>
   );
 }
+
+export default connect(mapStateToProps, { updateUser } )(UploadAvatar);

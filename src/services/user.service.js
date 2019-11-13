@@ -114,8 +114,15 @@ function uploadPhotoForUser( username, image ) {
         .then(handleResponse)
         .then(user => {
             if (user) {
-                alert(user.image)
-                localStorage.setItem('user', JSON.stringify(user));
+              // this is kind of strange because we are not returning updated user...
+              // we don't wait for database to give us updated user, it would be an extra call to db
+              // this will do the trick for now
+                localStorage.setItem('user', JSON.stringify({
+                    username: user.username,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    image: image
+                }));
             }
             return user;
         })

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import store from "../store/index";
+import { updateUser } from "../actions/index";
 import { userService } from '../services';
 import LoginQuoteComponent from './LoginQuoteComponent';
 import Copyright from './Copyright';
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-export default function LoginPage(props) {
+function LoginPage(props) {
   const classes = useStyles();
 
   const [username, setUsername] = React.useState('');
@@ -69,8 +70,9 @@ export default function LoginPage(props) {
     userService.login(username, password)
         .then(
             user => {
-                const { from } = props.location.state || { from: { pathname: "/climb-record/home" } };
-                props.history.push(from);
+              store.dispatch(updateUser(user));
+              const { from } = props.location.state || { from: { pathname: "/climb-record/home" } };
+              props.history.push(from);
             },
         );
 }
@@ -155,3 +157,6 @@ function handleSignUp(e) {
       </Container>
   </>);
 }
+
+
+export default LoginPage;
