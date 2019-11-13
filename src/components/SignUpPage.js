@@ -74,7 +74,7 @@ export default function SignUpPage(props) {
         .then(
             user => {
                 alert("user created! try to login!" + user);
-                const { from } = props.location.state || { from: { pathname: "/" } };
+                const { from } = props.location.state || { from: { pathname: "/climb-record/login" } };
                 props.history.push(from);
             }
         ).catch((error) => console.log("ERROR: " + error));
