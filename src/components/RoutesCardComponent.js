@@ -5,6 +5,7 @@ import AddRuteComponent from './AddRuteComponent';
 
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit, FaMapMarker, FaComment } from "react-icons/fa";
+import Grid from '@material-ui/core/Grid';
 
 import { userService } from '../services';
 
@@ -57,7 +58,7 @@ class RoutesCardComponent extends React.Component {
         const { user } = this.props;
         const { rutes, loading, searchstr } = this.state;
         return (
-            <div className="col-12 col-sm-6">
+            <Grid item sx={12} style={{ flex: 1, minWidth: '15em' }}>
                 <div className="searchbutton mb-4">
                     <input className="form-control" type="text" value={searchstr}  onChange={this.handleChange} name="searchstr" placeholder="Search" aria-label="Search" />
                 </div>
@@ -94,11 +95,8 @@ class RoutesCardComponent extends React.Component {
                     </p>
                     </div> : <div align="center"><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /></div>}
     
-
-                <AddRuteComponent username={user.username} updateRoutesList={this.updateRoutesList} />
-                
-                
-                </div>
+                <AddRuteComponent username={user.username} updateRoutesList={this.updateRoutesList} />   
+                </Grid>
             );
         }
 }

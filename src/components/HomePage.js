@@ -5,6 +5,8 @@ import UsersCardComponent from './UsersCardComponent';
 import RoutesCardComponent from './RoutesCardComponent';
 import Copyright from './Copyright';
 
+import Grid from '@material-ui/core/Grid';
+
 import { userService } from '../services';
 
 class HomePage extends React.Component {
@@ -43,7 +45,13 @@ class HomePage extends React.Component {
         return (
             <React.Fragment>
                 <NavBarComponent />
-                <div className="row home">
+                <Grid
+                    container
+                    direction="row"
+                    justify="space-between"
+                    alignItems="flex-start"
+                    style={{ marginTop:'70px', flex: 1}}
+                    >
                     <WelcomeCardComponent user={user} />
                     <RoutesCardComponent
                             user={user}
@@ -55,7 +63,7 @@ class HomePage extends React.Component {
                             submitted={submitted}
                         />
                     <UsersCardComponent users={users} />
-                </div>
+                </Grid>
                 <Copyright position='fixed' />
             </React.Fragment>
         );
