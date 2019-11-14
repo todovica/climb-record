@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Container from '@material-ui/core/Container';
-import { FaUserCircle } from "react-icons/fa";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import RoomIcon from '@material-ui/icons/Room';
 import InsertCommentIcon from '@material-ui/icons/InsertComment';

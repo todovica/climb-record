@@ -3,6 +3,7 @@ import NavBarComponent from './NavBarComponent';
 import WelcomeCardComponent from './WelcomeCardComponent';
 import UsersCardComponent from './UsersCardComponent';
 import RoutesCardComponent from './RoutesCardComponent';
+import Copyright from './Copyright';
 
 import { userService } from '../services';
 
@@ -55,6 +56,7 @@ class HomePage extends React.Component {
                         />
                     <UsersCardComponent users={users} />
                 </div>
+                <Copyright position='fixed' />
             </React.Fragment>
         );
     }
