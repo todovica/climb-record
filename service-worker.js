@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/climb-record/precache-manifest.c3769d08996295feba4fa7cb00b0b26f.js"
+  "/climb-record/precache-manifest.6279344d8e5ddcf57ed424630a8efd57.js"
 );
 
 self.addEventListener('message', (event) => {
