@@ -78,7 +78,7 @@ function UploadAvatar(props) {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Upload Image
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers style={{ border: '2px solid', borderRadius: '10em', borderColor: '#ffff', boxShadow: '0 1px 2px rgb(190, 238, 51)'}}>
           <Avatar
           width={390}
           height={295}
