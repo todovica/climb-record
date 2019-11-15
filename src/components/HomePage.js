@@ -50,7 +50,7 @@ class HomePage extends React.Component {
                     direction="row"
                     justify="space-between"
                     alignItems="flex-start"
-                    style={{ marginTop:'70px', flex: 1}}
+                    style={{ marginTop:'70px', marginBottom:'40px', flex: 1}}
                     >
                     <WelcomeCardComponent user={user} />
                     <RoutesCardComponent

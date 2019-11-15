@@ -39,7 +39,7 @@ const styles = theme => ({
   export const DialogContent = withStyles(theme => ({
     root: {
       padding: theme.spacing(2),
-      minWidth: '600px'
+      //minWidth: '600px'
     },
   }))(MuiDialogContent);
   

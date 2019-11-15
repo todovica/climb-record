@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import EditIcon from '@material-ui/icons/Edit';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -39,7 +41,8 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '33.33%',
   },
   border: {
-    boxShadow: '0px 2px 1px -1px #5aea00, 0px 1px 1px 0px #5aea00, 0px 1px 3px 0px #006400',
+    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+    
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -63,7 +66,7 @@ export default function RoutesTable(props) {
   const [searchstr, setSearchstr] = React.useState([]);
   const [open, setOpen] = React.useState('LOADING');
   
-  if(open===LOADING) {
+  if(open===LOADING || props.reload===true) {
     userService.getRutesForUser()
       .then(routes => {
         setRoutes(routes);
@@ -72,7 +75,24 @@ export default function RoutesTable(props) {
       .catch(()=>{ setOpen('INTERNAL_ERROR'); })
   }
 
-  const routesFound =  <>
+  function handleChange(e) {
+    setSearchstr(e.target.value);
+  }
+
+  /*
+  submitDeletionOfRoute(username, ruteName, comment, location, grade) {
+    this.setState({reload: true});
+    console.log('delete'  + ' ' + username + ' ' + ruteName + ' ' +  comment + ' ' +  location + ' ' +  grade);
+    userService.deleteRuteForUser(username, ruteName, comment, location, grade)
+        .then(rutes => this.setState({ rutes }))
+        .then(() => this.setState({reload: false}));
+  }*/
+
+  const routesFound =  <Grid item sx={12} style={{ flex: 1, minWidth: '15em' }}>
+  
+  <div className="searchbutton mb-4">
+      <input className="form-control" type="text" value={searchstr}  onChange={handleChange} name="searchstr" placeholder="Search" aria-label="Search" />
+  </div>
   {routes.map((routes, index) => {
                         if(routes.username === user.username && (searchstr.length===0 || routes.ruteName.search(searchstr)>-1)) {
                             return <ExpansionPanel key={index} className={classes.border}>
@@ -101,7 +121,13 @@ export default function RoutesTable(props) {
                             </ExpansionPanelDetails>
                             <Divider />
                             <ExpansionPanelActions>
-                              <Fab size="small" aria-label="scroll back to top">
+                              <Fab size="small" aria-label="scroll back to top" className={classes.border} onClick={props.submitDeletionOfRoute}>
+                                <DeleteOutlineIcon color="primary" />
+                              </Fab>
+                              <Fab size="small" aria-label="scroll back to top" className={classes.border}>
+                                <EditIcon color="primary" />
+                              </Fab>
+                              <Fab size="small" aria-label="scroll back to top" className={classes.border}>
                                 <FavoriteIcon color="primary" />
                               </Fab>
                             </ExpansionPanelActions>
@@ -110,7 +136,7 @@ export default function RoutesTable(props) {
                                         return null;
                                     }
                                  
-                    })}</>;
+                    })}</Grid>;
 
   let body;
   

@@ -71,11 +71,10 @@ function UploadAvatar(props) {
 
   return (
     <div>
-      <Button color="secondary" onClick={handleClickOpen} style={{ border: '2px solid', borderRadius: '10em', borderColor: '#beee33', boxShadow: 'rgb(190, 238, 51) -6px 0px 2px, rgb(190, 238, 51) 6px 0px 2px'}}>
+      <Button color="secondary" onClick={handleClickOpen} style={{ marginBottom: '20px', border: '2px solid', borderRadius: '10em', borderColor: '#beee33', boxShadow: '0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)'}}>
         {(user.image) ? <img src={user.image} alt="Profie" style={{ width: "150px", height: "150px" }} /> : <AccountCircleIcon style={{ width: "150px", height: "150px" }} />}
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-      
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Upload Image
         </DialogTitle>
