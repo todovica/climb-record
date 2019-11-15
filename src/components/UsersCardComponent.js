@@ -1,7 +1,8 @@
 import React from 'react';
-import ProfileView from './ProfileView';
+import { withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Button from '@material-ui/core/Button';
 class UsersCardComponent extends React.Component {
     
   render() {
@@ -14,7 +15,13 @@ class UsersCardComponent extends React.Component {
             {users.length &&
             <ul>
             {users.map((user, index) =>
-              <ProfileView user={user} key={index} />
+              <Button key={index} fullWidth variant="outlined" color="primary"
+                onClick={()=>{ this.props.history.push({ pathname: '/climb-record/id/'+user.username }) }} >
+              <Grid container direction="row" justify="space-between" alignItems="center" >
+                {(user.image) ? <img style={{ width: "2.4em"}} src={user.image} alt="Profie Photo" /> : <AccountCircleIcon fontSize="large" />}
+                {user.firstName + ' ' + user.lastName}
+              </Grid>
+            </Button>
             )}
             </ul>}
             </div>
@@ -23,7 +30,7 @@ class UsersCardComponent extends React.Component {
     }
 }
 
-export default UsersCardComponent; 
+export default withRouter(UsersCardComponent); 
 
 
 

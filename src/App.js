@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRoute';
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
+import ProfileView from './components/ProfileView';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -23,9 +24,10 @@ function App() {
     <Router>
         <div>
             <PrivateRoute exact path="/climb-record/home" component={HomePage} />
+            <PrivateRoute exact path="/climb-record/id/:username" component={ProfileView} />
             <Route path="/climb-record/login" component={LoginPage} />
             <Route path="/climb-record/signup" component={SignUpPage} />
-            <Redirect from='/climb-record*' to='/climb-record/home'/>
+            <Redirect exact from='/climb-record*' to='/climb-record/home'/>
         </div>
     </Router>
 </MuiThemeProvider>

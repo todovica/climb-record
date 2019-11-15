@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   }));
 
 
-export default function NavBarComponent() {
+function NavBarComponent(props) {
 
     const classes = useStyles();
 
@@ -31,17 +32,19 @@ export default function NavBarComponent() {
         <AppBar position="fixed" className={classes.appbar} >
         <Toolbar>
           <Typography variant="h6" className={classes.flex1}>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
-            <MenuIcon onClick={()=> {}} /> 
+          <IconButton onClick={()=>{}} edge="start" className={classes.menuButton} color="inherit" aria-label="menu" >
+            <MenuIcon /> 
           </IconButton>
           <IconButton disabled edge="start" className={classes.menuButton}>
             {'Climb Record App'}
           </IconButton>
           </Typography>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={()=> { window.location.href='/climb-record/login'}}>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={()=> { props.history.push({ pathname: '/climb-record/login' })}}>
             <ExitIcon  />
           </IconButton>
         </Toolbar>
         </AppBar>
       );
 }
+
+export default withRouter(NavBarComponent);
