@@ -41,8 +41,9 @@ const useStyles = makeStyles(theme => ({
     flexBasis: '33.33%',
   },
   border: {
+    backgroundColor: theme.palette.background.paper,
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
-    
+
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -65,14 +66,14 @@ export default function RoutesTable(props) {
   const [routes, setRoutes] = React.useState([]);
   const [searchstr, setSearchstr] = React.useState([]);
   const [open, setOpen] = React.useState('LOADING');
-  
-  if(open===LOADING || props.reload===true) {
+
+  if (open === LOADING || props.reload === true) {
     userService.getRutesForUser()
       .then(routes => {
         setRoutes(routes);
         setOpen(ROUTES_FOUND);
       })
-      .catch(()=>{ setOpen('INTERNAL_ERROR'); })
+      .catch(() => { setOpen('INTERNAL_ERROR'); })
   }
 
   function handleChange(e) {
@@ -88,80 +89,81 @@ export default function RoutesTable(props) {
         .then(() => this.setState({reload: false}));
   }*/
 
-  const routesFound =  <Grid item sx={12} style={{ flex: 1, minWidth: '15em' }}>
-  
-  <div className="searchbutton mb-4">
-      <input className="form-control" type="text" value={searchstr}  onChange={handleChange} name="searchstr" placeholder="Search" aria-label="Search" />
-  </div>
-  {routes.map((routes, index) => {
-                        if(routes.username === user.username && (searchstr.length===0 || routes.ruteName.search(searchstr)>-1)) {
-                            return <ExpansionPanel key={index} className={classes.border}>
-                            <ExpansionPanelSummary
-                              expandIcon={<ExpandMoreIcon />}
-                              aria-controls="panel1c-content"
-                              id="panel1c-header"
-                            >
-                              <div className={classes.column}>
-                                <Typography className={classes.heading}>{routes.ruteName}</Typography>
-                              </div>
-                              <div className={classes.column}>
-                                <Typography className={classes.secondaryHeading}>{routes.grade}</Typography>
-                              </div>
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails className={classes.details}>
-                              <div className={classes.column} />
-                              <div className={classes.column}>
-                              <Typography className={classes.secondaryHeading}>{routes.comment}</Typography>
-                              </div>
-                              <div className={clsx(classes.column, classes.helper)}>
-                                <Typography variant="caption">
-                                  {routes.location}
-                                </Typography>
-                              </div>
-                            </ExpansionPanelDetails>
-                            <Divider />
-                            <ExpansionPanelActions>
-                              <Fab size="small" aria-label="scroll back to top" className={classes.border} onClick={props.submitDeletionOfRoute}>
-                                <DeleteOutlineIcon color="primary" />
-                              </Fab>
-                              <Fab size="small" aria-label="scroll back to top" className={classes.border}>
-                                <EditIcon color="primary" />
-                              </Fab>
-                              <Fab size="small" aria-label="scroll back to top" className={classes.border}>
-                                <FavoriteIcon color="primary" />
-                              </Fab>
-                            </ExpansionPanelActions>
-                          </ExpansionPanel>}
-                                    else {
-                                        return null;
-                                    }
-                                 
-                    })}</Grid>;
+  const routesFound = <Grid item sx={12} style={{ flex: 1, minWidth: '15em' }}>
+
+    <div className="searchbutton mb-4">
+      <input className="form-control" type="text" value={searchstr} onChange={handleChange} name="searchstr" placeholder="Search" aria-label="Search" />
+    </div>
+    {routes.map((routes, index) => {
+      if (routes.username === user.username && (searchstr.length === 0 || routes.ruteName.search(searchstr) > -1)) {
+        return <ExpansionPanel key={index} className={classes.border}>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1c-content"
+            id="panel1c-header"
+          >
+            <div className={classes.column}>
+              <Typography className={classes.heading}>{routes.ruteName}</Typography>
+            </div>
+            <div className={classes.column}>
+              <Typography className={classes.secondaryHeading}>{routes.grade}</Typography>
+            </div>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.details}>
+            <div className={classes.column} />
+            <div className={classes.column}>
+              <Typography className={classes.secondaryHeading}>{routes.comment}</Typography>
+            </div>
+            <div className={clsx(classes.column, classes.helper)}>
+              <Typography variant="caption">
+                {routes.location}
+              </Typography>
+            </div>
+          </ExpansionPanelDetails>
+          <Divider />
+          <ExpansionPanelActions>
+            <Fab size="small" aria-label="scroll back to top" className={classes.border} onClick={props.submitDeletionOfRoute}>
+              <DeleteOutlineIcon color="primary" />
+            </Fab>
+            <Fab size="small" aria-label="scroll back to top" className={classes.border}>
+              <EditIcon color="primary" />
+            </Fab>
+            <Fab size="small" aria-label="scroll back to top" className={classes.border}>
+              <FavoriteIcon color="primary" />
+            </Fab>
+          </ExpansionPanelActions>
+        </ExpansionPanel>
+      }
+      else {
+        return null;
+      }
+
+    })}</Grid>;
 
   let body;
-  
-  switch(open) {
+
+  switch (open) {
     case LOADING:
       body = <Loading />;
       break;
     case ROUTES_FOUND:
-       body = routesFound;
+      body = routesFound;
       break;
     case INTERNAL_ERROR:
-       body = <Grid container direction="row" justify="center" alignItems="center">
-                Internal Error
+      body = <Grid container direction="row" justify="center" alignItems="center">
+        Internal Error
               </Grid>;
       break;
     default:
-      body =  <Grid container direction="row" justify="center" alignItems="center">
-                Unknown Error
+      body = <Grid container direction="row" justify="center" alignItems="center">
+        Unknown Error
               </Grid>;
   };
 
   return (
     <div className={classes.root}>
       {body}
-      
+
     </div>
   );
 }

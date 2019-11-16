@@ -3,7 +3,6 @@ import { FaSpa } from "react-icons/fa";
 import UploadAvatar from './UploadAvatar';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 
 class WelcomeCardComponent extends React.Component {
 
